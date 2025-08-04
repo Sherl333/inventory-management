@@ -1,6 +1,6 @@
 import express from "express";
 import verifyToken from "../middleware/verifyToken.js";
-import { getInventory,updateInventory } from "../controllers/inventoryControllers.js";
+import { getInventory,updateInventory, deleteInventory } from "../controllers/inventoryControllers.js";
 import db from '../config/db.js';
 
 const router = express.Router();
@@ -54,6 +54,8 @@ router.get("/dashboard", verifyToken, async (req, res) => {
 
 router.get('/',verifyToken,getInventory)
 router.post('/updateinventory', verifyToken, updateInventory);
+router.delete('/:id', verifyToken, deleteInventory);
+
 
 
 export default router;

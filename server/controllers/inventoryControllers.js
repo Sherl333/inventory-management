@@ -49,3 +49,36 @@ export const updateInventory = (req, res) => {
 
   
 }
+
+export const deleteInventory = (req, res) => {
+  if(req.user.role != 'admin'){
+    return res.status(403).json({ error: 'Forbidden: You do not have permission to delete inventory.' });
+  }
+  const { id } = req.params;
+  if (!id) {
+    return res.status(400).json({ message: "ID is required" });
+  }
+  const query = 'DELETE FROM inventory WHERE id = ?';
+  db.query(query, [id], (error, results) => {
+    if (error) {
+      console.error('Error deleting inventory item:', error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+    // Log the user activity
+    const activityQuery = `
+      INSERT INTO user_activities (user_id, name, user_activities)
+      VALUES (?, ?, ?)`;
+    const activityDesc = `Deleted inventory item with ID: ${id}`;
+    db.query(
+      activityQuery,
+      [req.user.id, req.user.name, activityDesc],
+      (activityErr) => {
+        if (activityErr) {
+          console.error("Error logging activity:", activityErr);
+          // Don't block deletion just because logging failed
+        }
+      }
+    );
+    res.status(200).json({ message: 'Inventory item deleted successfully' });
+  });
+}

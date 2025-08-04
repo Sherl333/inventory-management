@@ -3,6 +3,7 @@ import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import ProductsPage from "./pages/Products.jsx";
+import InventoryPage from "./pages/Inventory.jsx";
 
 function App() {
   return (
@@ -27,6 +28,14 @@ function App() {
             </PrivateRoute>
           }
         />
+      <Route
+        path="/inventory"
+        element={
+          <PrivateRoute>
+            <InventoryPage />
+          </PrivateRoute>
+        }
+      />  
 
       <Route path="*" element={<h1>404 Page Not Found</h1>} />
 
