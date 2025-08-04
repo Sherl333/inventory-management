@@ -1,0 +1,51 @@
+POST http://localhost:8484/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Alex",
+  "email": "alex@example.com",
+  "password": "password123",
+  "role": "admin"
+}
+
+###
+
+POST http://localhost:8484/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "sherlin@example.com",
+  "password": "password123"
+}
+
+###
+GET http://localhost:8484/api/inventory/dashboard
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJhbGV4QGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwibmFtZSI6IkFsZXgiLCJpYXQiOjE3NTQzMDI0OTUsImV4cCI6MTc1NDM4ODg5NX0.f8nsyptSUIIL049fUF8hmCGg4VL595-BjrXKv1ZIiwI
+
+###
+GET http://localhost:8484/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJhbGV4QGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwibmFtZSI6IkFsZXgiLCJpYXQiOjE3NTQyMDY1MjEsImV4cCI6MTc1NDI5MjkyMX0.oSlW_KDJyazY7N0S7S0DxK8yRFRY4l4bctYhsY3W--Q
+
+###
+POST http://localhost:8484/api/inventory/updateinventory
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJhbGV4QGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwibmFtZSI6IkFsZXgiLCJpYXQiOjE3NTQzMTU0OTYsImV4cCI6MTc1NDQwMTg5Nn0.44p1YzRPNosngnu1TV5jWD_6wY6ez9Dp2SWUsYMSRUI
+Content-Type: application/json
+
+{
+  "sku": "Bed",
+  "warehouse_id": 2,
+  "quantity": 3
+}
+
+###
+POST http://localhost:8484/api/products/insertProducts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzaGVybGluQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwibmFtZSI6IlNoZXJsaW4iLCJpYXQiOjE3NTQzMTY1NjMsImV4cCI6MTc1NDQwMjk2M30.nFOW_CsppELYZlZn5aMdKEan7WIBVPgVyR25yLn2NP8
+Content-Type: application/json
+
+{
+  "sku": "Bed",
+  "name": "Luxury Bed",
+  "category": "Furniture",
+  "price": 30000
+}
+
